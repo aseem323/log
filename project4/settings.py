@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from ntpath import join
 from pathlib import Path
 import os
 
@@ -119,14 +120,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+PROJECT_ROOT  =  os.path.join(os.path.abspath(__file__))
+STATIC_ROOT  =  os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 #STATICFILES_DIRS =[
 #   BASE_DIR /"static",
 #]
 STATICFILES_DIRS = (
-    os.path,join(PROJET_ROOT, 'static'),
+    os.path,join(PROJECT_ROOT, 'static'),
 )
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
